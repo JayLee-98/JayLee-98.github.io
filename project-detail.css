@@ -1,0 +1,238 @@
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+    --background-dark: #121212; /* 전체 배경 */
+    --content-dark: #1E1E1F; /* 콘텐츠 배경 */
+    --accent-color: hsl(45, 100%, 72%); /* 강조 색상 (예: 텍스트, 강조된 요소) */
+    --border-radius: 20px; /* 콘텐츠 박스 둥근 모서리 */
+    --text-color: #ffffff; /* 기본 텍스트 색상 */
+    --subtext-color: #cccccc; /* 서브 텍스트 색상 */
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 박스 그림자 */
+  }
+  
+  /*-----------------------------------*\
+    #RESET
+  \*-----------------------------------*/
+  
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  img,
+  a,
+  button,
+  time,
+  span {
+    display: block;
+  }
+  
+  button {
+    font: inherit;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    background: none;
+    font: inherit;
+  }
+  
+  html {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /*-----------------------------------*\
+    #LAYOUT
+  \*-----------------------------------*/
+  
+  .pd-container {
+    max-width: 1000px;
+    margin: auto;
+    background-color: var(--content-dark);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .pd-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .pd-header-title {
+    font-size: 36px;
+    color: var(--accent-color);
+  }
+  
+  .pd-header-subtitle {
+    font-size: 18px;
+    color: var(--subtext-color);
+    margin-top: 10px;
+  }
+  
+  .pd-section-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var();
+    position: relative;
+    padding-bottom: 7px;
+  }
+
+  .pd-section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--text-gradient-yellow);
+    border-radius: 3px;
+  }
+  
+  .pd-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .pd-tech-item {
+    background-color: var(--background-dark);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+    font-weight: 500;
+  }
+  
+  .pd-key-features {
+    margin-bottom: 20px;
+  }
+  
+  .pd-key-feature {
+    background-color: var(--background-dark);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+
+  .pd-key-feature::before {
+    content: '✔';
+    margin-right: 10px;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+  }
+  
+/* 이미지 슬라이드 스타일 */
+.pd-image-gallery {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
+  margin: 0 -15px;
+  padding: 25px;
+  padding-bottom: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: 25px;
+}
+
+.pd-gallery-item {
+    min-width: 50%; /* 슬라이드 크기 조정 가능 */
+    scroll-snap-align: start;
+}
+
+.pd-gallery-image {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-1);
+}
+
+.pd-gallery-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px var(--shadow-1);
+}
+
+ .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
+
+ .has-scrollbar::-webkit-scrollbar {
+    width: 5px; /* for vertical scrollbar */
+    height: 5px; /* for horizontal scrollbar */
+  }
+
+  .has-scrollbar::-webkit-scrollbar-track {
+    background: var(--onyx);
+    border-radius: 5px;
+  }
+
+  .has-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+  }
+  
+  .has-scrollbar::-webkit-scrollbar-button { width: 20px; }
+
+  .pd-outcome,
+  .pd-testimonials {
+    background-color: var(--background-dark);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+    margin-bottom: 20px;
+  }
+  
+  .pd-outcome-title,
+  .pd-testimonial-quote {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .pd-outcome-content,
+  .pd-testimonial-author {
+    color: var(--subtext-color);
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  footer a {
+    color: var(--accent-color);
+    font-size: 18px;
+  }
+  
