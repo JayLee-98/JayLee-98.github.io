@@ -11,6 +11,122 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        #imageModal img {
+            display: block;
+            margin: auto;
+            width: 90vw;  
+            height: 60vh; 
+            max-width: 1000px;
+            max-height: 800px;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+
+        .modal-content {
+            text-align: center;
+            padding: 120px;
+        }
+
+        #modal-description {
+            color: #fff;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 20%; 
+            height: 100%; 
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: transparent;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .prev {
+            left: 0;
+            justify-content: flex-start; 
+        }
+
+        .next {
+            right: 0;
+            justify-content: flex-end;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background: transparent;
+        }
+
+        .prev::before,
+        .next::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: none;
+        }
+
+        .close {
+            right: 10px;
+            top: 10px;
+            transform: translateY(0);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .pd-gallery-image {
+            width: 470px;  
+            height: 300px; 
+            object-fit: cover; 
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body class="pd-reset">
@@ -18,66 +134,58 @@
 
         <header class="pd-header">
             <h1 class="pd-header-title">StockVibe</h1>
-            <p class="pd-header-subtitle">WebRTC와 STT, NLP, TTS를 통용한 인공지능 언어 교환 웹 사이트</p>
+            <p class="pd-header-subtitle">StockVibe는 주식 및 투자 관련 데이터를 분석하여 사용자에게 실시간으로 제공하는 플랫폼입니다. 투자 결정을 돕기 위해 다양한 지표와 데이터를 시각화하여 제공합니다.</p>
         </header>
 
         <section>
           <h2 class="pd-section-title">Technology Stack</h2>
             <div class="pd-tech-stack">
-                <span class="pd-tech-item">React</span>
                 <span class="pd-tech-item">Python</span>
-                <span class="pd-tech-item">WebRTC</span>
-                <span class="pd-tech-item">STT</span>
-                <span class="pd-tech-item">NLP</span>
-                <span class="pd-tech-item">TTS</span>
+                <span class="pd-tech-item">React.js</span>
+                <span class="pd-tech-item">FastAPI</span>
+                <span class="pd-tech-item">Google Gemma 2</span>
+                <span class="pd-tech-item">Styled-components</span>
+                <span class="pd-tech-item">Firebase</span>
+                <span class="pd-tech-item">MySQL</span>
+                <span class="pd-tech-item">AWS</span>
+                <span class="pd-tech-item">Git</span>
+                <span class="pd-tech-item">Notion</span>
+                <span class="pd-tech-item">Figma</span>
             </div>
         </section>
 
         <section>
             <h2 class="pd-section-title">Key Features</h2>
             <ul class="pd-key-features">
-                <li class="pd-key-feature">실시간 언어 교환</li>
-                <li class="pd-key-feature">음성 인식 및 변환</li>
-                <li class="pd-key-feature">대화 내용 분석 및 요약</li>
-                <li class="pd-key-feature">멀티플랫폼 지원</li>
-                <!-- 주요 기능 추가 -->
+                <li class="pd-key-feature">실시간 데이터 분석: 실시간으로 주식 데이터를 수집하고 분석하여 사용자에게 최신 정보를 제공합니다.</li>
+                <li class="pd-key-feature">데이터 시각화: 복잡한 투자 데이터를 이해하기 쉽도록 차트와 그래프 형태로 시각화하여 제공합니다.</li>
+                <li class="pd-key-feature">뉴스 분석: 주식 정보에 대한 뉴스를 분석하여 기사 내용을 요약하고 긍부정 감정하는 기능을 제공합니다.</li>
+                <li class="pd-key-feature">투자자 여론 체크: 주식 종목 토론방의 유저 토론을 종합 요약하고, 긍부정 감정을 통해 투자자들의 여론을 분석하는 제공합니다.</li>
             </ul>
         </section>
 
         <section>
-          <h2 class="pd-section-title">Project Images</h2>
-          <ul class="pd-image-gallery has-scrollbar">
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-4.jpg" alt="LingoBell Screenshot 2" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-3.jpg" alt="LingoBell Screenshot 3" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
-            </li>
-          </ul>
-      </section>
+            <h2 class="pd-section-title">Project Images</h2>
+            <ul class="pd-image-gallery has-scrollbar">
+                <li class="pd-gallery-item">
+                    <img src="./images/stockvibe-1.png" alt="StockVibe Screenshot 1" class="pd-gallery-image" data-description="StockVibe의 대시보드 페이지입니다. 사용자는 주식 및 금융 관련 데이터를 실시간으로 확인할 수 있습니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/stockvibe-3.png" alt="StockVibe Screenshot 3" class="pd-gallery-image" data-description="종목 토론방을 요약한 페이지입니다. 사용자는 이곳에서 현재 주식 종목에 대해 여론의 흐름을 파악할 수 있습니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/stockvibe-4.png" alt="StockVibe Screenshot 4" class="pd-gallery-image" data-description="주식 종목별로 뉴스 기사를 종합하여 하나의 요약 카드로 보여줍니다.">
+                </li>
+            </ul>
+        </section>
       
-
         <section>
             <h2 class="pd-section-title" style="margin-top: 20px;">Project Outcome</h2>
             <div class="pd-outcome">
                 <h3 class="pd-outcome-title">프로젝트 결과</h3>
                 <p class="pd-outcome-content">
-                    LingoBell은 사용자의 언어 학습을 보다 효율적이고 실시간으로 지원하는 웹 플랫폼입니다. 다양한 기술 스택을 활용하여 실시간 언어 교환을 가능하게 하였으며, 사용자는 원하는 언어를 자연스럽게 학습할 수 있었습니다.
+                    StockVibe는 사용자에게 주식 및 투자 관련 데이터를 실시간으로 제공함으로써, 투자 결정을 돕고 있습니다.
                 </p>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="pd-section-title">User Testimonials</h2>
-            <div class="pd-testimonials">
-                <blockquote class="pd-testimonial-quote">"LingoBell은 제가 원하는 방식으로 언어를 학습할 수 있도록 해준 최고의 플랫폼입니다!"</blockquote>
-                <cite class="pd-testimonial-author">- 김영수</cite>
             </div>
         </section>
 
@@ -85,6 +193,58 @@
             <a href="index.html">메인 페이지로 돌아가기</a>
         </footer>
     </div>
+    <div id="imageModal">
+        <span id="close" class="close">&times;</span>
+        <span id="prev" class="prev">&#10094;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="">
+            <p id="modal-description"></p>
+        </div>
+        <span id="next" class="next">&#10095;</span>
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modal-image");
+        const modalDescription = document.getElementById("modal-description");
+        const galleryImages = document.querySelectorAll(".pd-gallery-image");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+        const closeBtn = document.getElementById("close");
+        
+        let currentIndex;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener("click", function () {
+                currentIndex = index;
+                modalImage.src = this.src;
+                modalDescription.textContent = this.getAttribute("data-description");
+                modal.style.display = "block";
+            });
+        });
+
+        prevBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === 0) ? galleryImages.length - 1 : currentIndex - 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        nextBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === galleryImages.length - 1) ? 0 : currentIndex + 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 
 </html>

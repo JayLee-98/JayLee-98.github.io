@@ -11,6 +11,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        #imageModal img {
+            display: block;
+            margin: auto;
+            width: 90vw;  /* 너비를 뷰포트의 80%로 고정 */
+            height: 60vh; /* 높이를 뷰포트의 80%로 고정 */
+            max-width: 1000px; /* 최대 너비를 설정 */
+            max-height: 800px; /* 최대 높이를 설정 */
+            object-fit: contain; /* 이미지 비율을 유지하면서 크기 조정 */
+            border-radius: 16px; /* 이미지 모서리를 둥글게 */
+        }
+
+        .modal-content {
+            text-align: center;
+            padding: 120px;
+        }
+
+        #modal-description {
+            color: #fff;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 20%; /* 화살표 주변의 클릭 가능한 넓은 영역 */
+            height: 100%; /* 상하 영역 모두 포함 */
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: transparent;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10; /* 화살표가 이미지 위에 오도록 */
+        }
+
+        .prev {
+            left: 0;
+            justify-content: flex-start; /* 화살표를 왼쪽에 배치 */
+        }
+
+        .next {
+            right: 0;
+            justify-content: flex-end; /* 화살표를 오른쪽에 배치 */
+        }
+
+        .prev:hover,
+        .next:hover {
+            background: transparent;
+        }
+
+        /* 화살표 자체에 대한 스타일 */
+        .prev::before,
+        .next::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: none;
+        }
+
+        .close {
+            right: 10px;
+            top: 10px;
+            transform: translateY(0);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .pd-gallery-image {
+            width: 470px;  /* 썸네일의 고정 너비 */
+            height: 300px; /* 썸네일의 고정 높이 */
+            object-fit: cover; /* 비율을 유지하며 이미지가 잘리지 않도록 */
+            border-radius: 8px; /* 이미지 모서리를 둥글게 */
+        }
+    </style>
 </head>
 
 <body class="pd-reset">
@@ -18,66 +135,71 @@
 
         <header class="pd-header">
             <h1 class="pd-header-title">reVelup</h1>
-            <p class="pd-header-subtitle">WebRTC와 STT, NLP, TTS를 통용한 인공지능 언어 교환 웹 사이트</p>
+            <p class="pd-header-subtitle">reVelup은 리사이클링과 업사이클링 프로젝트를 지원하는 크라우드 펀딩 플랫폼입니다. 이 사이트는 사용자가 다양한 프로젝트에 후원하고, 해당 프로젝트의 펀딩 내역을 관리할 수 있도록 지원합니다.</p>
         </header>
 
         <section>
           <h2 class="pd-section-title">Technology Stack</h2>
             <div class="pd-tech-stack">
-                <span class="pd-tech-item">React</span>
-                <span class="pd-tech-item">Python</span>
-                <span class="pd-tech-item">WebRTC</span>
-                <span class="pd-tech-item">STT</span>
-                <span class="pd-tech-item">NLP</span>
-                <span class="pd-tech-item">TTS</span>
+                <span class="pd-tech-item">Spring Boot</span>
+                <span class="pd-tech-item">JavaScript</span>
+                <span class="pd-tech-item">Thymeleaf</span>
+                <span class="pd-tech-item">MyBatis</span>
+                <span class="pd-tech-item">MySQL</span>
+                <span class="pd-tech-item">Bootstrap</span>
+                <span class="pd-tech-item">Git</span>
+                <span class="pd-tech-item">Notion</span>
+                <span class="pd-tech-item">Figma</span>
             </div>
         </section>
 
         <section>
             <h2 class="pd-section-title">Key Features</h2>
             <ul class="pd-key-features">
-                <li class="pd-key-feature">실시간 언어 교환</li>
-                <li class="pd-key-feature">음성 인식 및 변환</li>
-                <li class="pd-key-feature">대화 내용 분석 및 요약</li>
-                <li class="pd-key-feature">멀티플랫폼 지원</li>
-                <!-- 주요 기능 추가 -->
+                <li class="pd-key-feature">펀딩 시스템: 사용자는 다양한 리사이클링, 업사이클링 프로젝트에 펀딩할 수 있으며, 각 프로젝트의 진행 상황을 확인할 수 있습니다.</li>
+                <li class="pd-key-feature">프로젝트 관리: 프로젝트 생성자들은 자신의 프로젝트를 관리하고 후원자들과의 소통을 유지할 수 있는 관리 도구를 제공합니다.</li>
+                <li class="pd-key-feature">리워드 시스템: 후원자들에게 제공되는 다양한 리워드 옵션을 설정하고 관리할 수 있습니다.</li>
+                <li class="pd-key-feature">사용자 커뮤니티: 사용자들 간의 소통을 위한 커뮤니티 기능을 통해 리사이클링 및 업사이클링에 대한 정보를 공유하고, 협업할 수 있습니다.</li>
             </ul>
         </section>
 
         <section>
-          <h2 class="pd-section-title">Project Images</h2>
-          <ul class="pd-image-gallery has-scrollbar">
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-4.jpg" alt="LingoBell Screenshot 2" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-3.jpg" alt="LingoBell Screenshot 3" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
-            </li>
-          </ul>
-      </section>
+            <h2 class="pd-section-title">Project Images</h2>
+            <ul class="pd-image-gallery has-scrollbar">
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-1.png" alt="reVelup Screenshot 1" class="pd-gallery-image" data-description="reVelup의 메인 페이지입니다. 메인 페이지의 상단부에는 배너와 reVelup의 핵심 가치 4개가 아이콘과 함께 보여집니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-2.png" alt="reVelup Screenshot 2" class="pd-gallery-image" data-description="메인 페이지의 하단부에서 사용자는 최신 4개의 프로젝트를 확인할 수 있습니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-3.png" alt="reVelup Screenshot 3" class="pd-gallery-image" data-description="현재 진행 중인 모든 프로젝트를 볼 수 있는 전체 펀딩 목록 페이지입니다. 펀딩 심사에서 승인 받은 프로젝트들이 보여지게 됩니다. 전체 모금액 중 얼만큼 달성했는지 바그래프 형식과 퍼센트로 확인할 수 있습니다. 상세보기를 클릭하면 각 펀딩 프로젝트의 상세 페이지로 이동하게 됩니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-4.png" alt="reVelup Screenshot 4" class="pd-gallery-image" data-description="프로젝트 상세페이지에서 프로젝트의 펀딩 현황을 더욱 자세하게 확인할 수 있습니다. 총 몇 명이 펀딩에 참여했는지, 모금된 금액은 얼마나 되는지, 전체 목표 달성액 중 몇 퍼센트 완료했는지 등을 확인할 수 있습니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-5.png" alt="reVelup Screenshot 5" class="pd-gallery-image" data-description="프로젝트 상품페이지의 중앙부분에는 판매자의 펀딩 프로젝트별 공지사항을 확인할 수 있습니다. 배송 사고, 지연, 알림사항들을 이 기능을 활용하여 후원자들과 소통하게 됩니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-6.png" alt="reVelup Screenshot 6" class="pd-gallery-image" data-description="공지사항 확인, 펀딩 생성, 이용 약관 및 개인정보처리방침을 확인할 수 있는 푸터입니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-7.png" alt="reVelup Screenshot 7" class="pd-gallery-image" data-description="reVelup의 로그인 페이지입니다. 아이디, 비밀번호찾기 등이 가능합니다.">
+                </li>
+                <li class="pd-gallery-item">
+                    <img src="./images/revelup-8.png" alt="reVelup Screenshot 8" class="pd-gallery-image" data-description="프로젝트를 신규 등록하는 페이지입니다. 사용자가 최초로 펀딩을 등록할 경우 판매자의 사업자등록증과 프로필 사진을 업로드하도록 합니다.">
+                </li>
+            </ul>
+        </section>
       
-
         <section>
             <h2 class="pd-section-title" style="margin-top: 20px;">Project Outcome</h2>
             <div class="pd-outcome">
                 <h3 class="pd-outcome-title">프로젝트 결과</h3>
                 <p class="pd-outcome-content">
-                  reVelup은 사용자의 언어 학습을 보다 효율적이고 실시간으로 지원하는 웹 플랫폼입니다. 다양한 기술 스택을 활용하여 실시간 언어 교환을 가능하게 하였으며, 사용자는 원하는 언어를 자연스럽게 학습할 수 있었습니다.
+                    reVelup은 리사이클링 및 업사이클링에 특화된 크라우드펀딩 사이트를 구축함으로써, 이 분야를 전문적으로 다루는 플랫폼이 부재한 시장에서 큰 성장 가능성을 확보하는 것입니다. 이를 통해 사람들이 다양한 친환경 프로젝트를 하나의 플랫폼에서 쉽게 찾아보고 참여할 수 있도록 하는 것이 또 다른 목표입니다.
                 </p>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="pd-section-title">User Testimonials</h2>
-            <div class="pd-testimonials">
-                <blockquote class="pd-testimonial-quote">"reVelup은 제가 원하는 방식으로 언어를 학습할 수 있도록 해준 최고의 플랫폼입니다!"</blockquote>
-                <cite class="pd-testimonial-author">- 김영수</cite>
             </div>
         </section>
 
@@ -85,6 +207,68 @@
             <a href="index.html">메인 페이지로 돌아가기</a>
         </footer>
     </div>
+    <div id="imageModal">
+        <span id="close" class="close">&times;</span>
+        <span id="prev" class="prev">&#10094;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="">
+            <p id="modal-description"></p>
+        </div>
+        <span id="next" class="next">&#10095;</span>
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modal-image");
+        const modalDescription = document.getElementById("modal-description");
+        const galleryImages = document.querySelectorAll(".pd-gallery-image");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+        const closeBtn = document.getElementById("close");
+        
+        let currentIndex;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener("click", function () {
+                currentIndex = index;
+                modalImage.src = this.src;
+                modalDescription.textContent = this.getAttribute("data-description");
+                modal.style.display = "block";
+            });
+        });
+
+        // 이전 이미지로 이동
+        prevBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === 0) ? galleryImages.length - 1 : currentIndex - 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        // 다음 이미지로 이동
+        nextBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === galleryImages.length - 1) ? 0 : currentIndex + 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        // 모달 닫기
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // 모달 밖 클릭시 닫기
+        // window.addEventListener("click", function (event) {
+            // if (event.target === modal || event.target.classList.contains('close') || event.target.classList.contains('modal-content')) {
+                // modal.style.display = "none";
+            // }
+        // }); 
+
+        window.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -11,6 +11,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        #imageModal img {
+            display: block;
+            margin: auto;
+            width: 90vw;  /* 너비를 뷰포트의 80%로 고정 */
+            height: 60vh; /* 높이를 뷰포트의 80%로 고정 */
+            max-width: 1000px; /* 최대 너비를 설정 */
+            max-height: 800px; /* 최대 높이를 설정 */
+            object-fit: contain; /* 이미지 비율을 유지하면서 크기 조정 */
+            border-radius: 16px; /* 이미지 모서리를 둥글게 */
+        }
+
+        .modal-content {
+            text-align: center;
+            padding: 120px;
+        }
+
+        #modal-description {
+            color: #fff;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 20%; /* 화살표 주변의 클릭 가능한 넓은 영역 */
+            height: 100%; /* 상하 영역 모두 포함 */
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: transparent;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10; /* 화살표가 이미지 위에 오도록 */
+        }
+
+        .prev {
+            left: 0;
+            justify-content: flex-start; /* 화살표를 왼쪽에 배치 */
+        }
+
+        .next {
+            right: 0;
+            justify-content: flex-end; /* 화살표를 오른쪽에 배치 */
+        }
+
+        .prev:hover,
+        .next:hover {
+            background: transparent;
+        }
+
+        /* 화살표 자체에 대한 스타일 */
+        .prev::before,
+        .next::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: none;
+        }
+
+        .close {
+            right: 10px;
+            top: 10px;
+            transform: translateY(0);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .pd-gallery-image {
+            width: 470px;  /* 썸네일의 고정 너비 */
+            height: 300px; /* 썸네일의 고정 높이 */
+            object-fit: cover; /* 비율을 유지하며 이미지가 잘리지 않도록 */
+            border-radius: 8px; /* 이미지 모서리를 둥글게 */
+        }
+    </style>
 </head>
 
 <body class="pd-reset">
@@ -18,66 +135,62 @@
 
         <header class="pd-header">
             <h1 class="pd-header-title">Ketchup</h1>
-            <p class="pd-header-subtitle">WebRTC와 STT, NLP, TTS를 통용한 인공지능 언어 교환 웹 사이트</p>
+            <p class="pd-header-subtitle">Ketchup은 업무에 필요한 모든 기능을 하나로 모은 All-in-one 그룹웨어 시스템입니다.</p>
         </header>
 
         <section>
           <h2 class="pd-section-title">Technology Stack</h2>
             <div class="pd-tech-stack">
-                <span class="pd-tech-item">React</span>
-                <span class="pd-tech-item">Python</span>
-                <span class="pd-tech-item">WebRTC</span>
-                <span class="pd-tech-item">STT</span>
-                <span class="pd-tech-item">NLP</span>
-                <span class="pd-tech-item">TTS</span>
+                <span class="pd-tech-item">Spring Boot</span>
+                <span class="pd-tech-item">React.js</span>
+                <span class="pd-tech-item">Redux</span>
+                <span class="pd-tech-item">FullCalendar.js</span>
+                <span class="pd-tech-item">Google Calendar API</span>
+                <span class="pd-tech-item">MySQL</span>
+                <span class="pd-tech-item">Git</span>
+                <span class="pd-tech-item">Notion</span>
+                <span class="pd-tech-item">Figma</span>
             </div>
         </section>
 
         <section>
             <h2 class="pd-section-title">Key Features</h2>
             <ul class="pd-key-features">
-                <li class="pd-key-feature">실시간 언어 교환</li>
-                <li class="pd-key-feature">음성 인식 및 변환</li>
-                <li class="pd-key-feature">대화 내용 분석 및 요약</li>
-                <li class="pd-key-feature">멀티플랫폼 지원</li>
-                <!-- 주요 기능 추가 -->
+                <li class="pd-key-feature">일정 관리: FullCalendar.js를 활용하여 각 부서별로 일정 관리가 가능합니다. 일정 추가, 수정, 삭제 등의 기능을 제공합니다.</li>
+                <li class="pd-key-feature">예약 관리: 회의실, 설비 등의 자원을 예약할 수 있는 기능을 구현하여 회사 자원을 효율적으로 관리할 수 있게합니다.</li>
+                <li class="pd-key-feature">파일 관리: 각 부서 별로 파일을 다운로드하거나 업로드할 수 있는 일원화된 파일 저장소 기능을 수행합니다.</li>
+                <li class="pd-key-feature">전자 결재: 온라인으로 결재를 진행할 수 있는 전자 결재 시스템을 구현했습니다. 각 결재 라인에서 승인을 받아야 다음으로 넘어가도록 개발하였습니다.</li>
             </ul>
         </section>
 
         <section>
           <h2 class="pd-section-title">Project Images</h2>
           <ul class="pd-image-gallery has-scrollbar">
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-4.jpg" alt="LingoBell Screenshot 2" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-3.jpg" alt="LingoBell Screenshot 3" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
+            <li class="pd-gallery-item">
+                <img src="./images/ketchup-1.png" alt="Ketchup Screenshot 1" class="pd-gallery-image" data-description="Ketchup의 메인 페이지입니다. 여기에서 각종 통계와 일정, 주요 기능에 대한 접근이 가능합니다.">
             </li>
-          </ul>
+            <li class="pd-gallery-item">
+                <img src="./images/ketchup-2.png" alt="Ketchup Screenshot 2" class="pd-gallery-image" data-description="Ketchup의 일정 관리 기능 페이지입니다. FullCalendar.js를 활용하여 각 부서의 일정을 한눈에 확인할 수 있습니다. 주별, 월별, 일별로 달력의 View 형식을 조작할 수 있으며, Google Calendar API로 연동된 한국의 공휴일도 부서별 일정과 함께 조회되어 화면에 표시됩니다.">
+            </li>
+            <li class="pd-gallery-item">
+                <img src="./images/ketchup-3.png" alt="Ketchup Screenshot 3" class="pd-gallery-image" data-description="부서별 캘린더 하단부에 부서의 개별 직원 그리고 현재 업무의 진행상황에 필터링을 걸어놓음으로써 사용자의 다양한 요구사항에 부합할 수 있도록 구현했습니다.">
+            </li>
+            <li class="pd-gallery-item">
+                <img src="./images/ketchup-4.png" alt="Ketchup Screenshot 4" class="pd-gallery-image" data-description="Ketchup의 자원 예약 페이지입니다. 자원(예: 회의실, 법인 차량)마다 독립적인 달력을 렌더링하기 위해 FullCalendar.js 라이브러리를 div 박스 안에 배치하고, react-horizontal-scrolling-menu 라이브러리로 수평 스크롤로 구현했습니다. 여러 자원의 예약 상황을 자원별로 확인하면서도 다시 검색조건을 바꾸지 않으면서도 좌,우로 스크롤을 넘겨 다른 자원의 예약 상태를 확인할 수 있게 하였습니다.">
+            </li>
+            <li class="pd-gallery-item">
+                <img src="./images/ketchup-6.png" alt="Ketchup Screenshot 5" class="pd-gallery-image" data-description="Ketchup의 전자 결재 시스템 화면입니다. 부서별로 전체 직원이 분류되어있으며, 결재자로 추가와 삭제가 가능합니다. 상황에 따라 사용자가 신규로 문서를 작성할 수도 있고, 미리 저장이된 문서 양식을 선택하면 수정할 수 있는 문서 템플릿이 워드에디터에 띄워집니다. 이를 사용하여 자주 사용하는 문서를 손쉽게 불러와서 사용할 수 있습니다.">
+            </li>
+        </ul>
       </section>
       
-
         <section>
             <h2 class="pd-section-title" style="margin-top: 20px;">Project Outcome</h2>
             <div class="pd-outcome">
                 <h3 class="pd-outcome-title">프로젝트 결과</h3>
                 <p class="pd-outcome-content">
-                  Ketchup은 사용자의 언어 학습을 보다 효율적이고 실시간으로 지원하는 웹 플랫폼입니다. 다양한 기술 스택을 활용하여 실시간 언어 교환을 가능하게 하였으며, 사용자는 원하는 언어를 자연스럽게 학습할 수 있었습니다.
+                    Ketchup은 다양한 업무 기능을 하나의 플랫폼으로 통합하여 회사의 효율성을 극대화했습니다. 이를 통해 사용자는 일정 관리, 예약, 파일 관리, 전자 결재 등 모든 기능을 한 곳에서 관리할 수 있게 되었습니다.
                 </p>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="pd-section-title">User Testimonials</h2>
-            <div class="pd-testimonials">
-                <blockquote class="pd-testimonial-quote">"Ketchup은 제가 원하는 방식으로 언어를 학습할 수 있도록 해준 최고의 플랫폼입니다!"</blockquote>
-                <cite class="pd-testimonial-author">- 김영수</cite>
             </div>
         </section>
 
@@ -85,6 +198,68 @@
             <a href="index.html">메인 페이지로 돌아가기</a>
         </footer>
     </div>
+    <div id="imageModal">
+        <span id="close" class="close">&times;</span>
+        <span id="prev" class="prev">&#10094;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="">
+            <p id="modal-description"></p> <!-- 설명 텍스트가 여기에 표시됨 -->
+        </div>
+        <span id="next" class="next">&#10095;</span>
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modal-image");
+        const modalDescription = document.getElementById("modal-description");
+        const galleryImages = document.querySelectorAll(".pd-gallery-image");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+        const closeBtn = document.getElementById("close");
+        
+        let currentIndex;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener("click", function () {
+                currentIndex = index;
+                modalImage.src = this.src;
+                modalDescription.textContent = this.getAttribute("data-description");
+                modal.style.display = "block";
+            });
+        });
+
+        // 이전 이미지로 이동
+        prevBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === 0) ? galleryImages.length - 1 : currentIndex - 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        // 다음 이미지로 이동
+        nextBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === galleryImages.length - 1) ? 0 : currentIndex + 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        // 모달 닫기
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // 모달 밖 클릭시 닫기
+        // window.addEventListener("click", function (event) {
+            // if (event.target === modal || event.target.classList.contains('close') || event.target.classList.contains('modal-content')) {
+                // modal.style.display = "none";
+            // }
+        // }); 
+
+        window.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 
 </html>

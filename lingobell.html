@@ -11,6 +11,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        #imageModal img {
+            display: block;
+            margin: auto;
+            width: 90vw;  /* 너비를 뷰포트의 80%로 고정 */
+            height: 60vh; /* 높이를 뷰포트의 80%로 고정 */
+            max-width: 1000px; /* 최대 너비를 설정 */
+            max-height: 800px; /* 최대 높이를 설정 */
+            object-fit: contain; /* 이미지 비율을 유지하면서 크기 조정 */
+            border-radius: 16px; /* 이미지 모서리를 둥글게 */
+        }
+
+        .modal-content {
+            text-align: center;
+            padding: 120px;
+        }
+
+        #modal-description {
+            color: #fff;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 20%; /* 화살표 주변의 클릭 가능한 넓은 영역 */
+            height: 100%; /* 상하 영역 모두 포함 */
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: transparent;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10; /* 화살표가 이미지 위에 오도록 */
+        }
+
+        .prev {
+            left: 0;
+            justify-content: flex-start; /* 화살표를 왼쪽에 배치 */
+        }
+
+        .next {
+            right: 0;
+            justify-content: flex-end; /* 화살표를 오른쪽에 배치 */
+        }
+
+        .prev:hover,
+        .next:hover {
+            background: transparent;
+        }
+
+        /* 화살표 자체에 대한 스타일 */
+        .prev::before,
+        .next::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: none;
+        }
+
+        .close {
+            right: 10px;
+            top: 10px;
+            transform: translateY(0);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .pd-gallery-image {
+            width: 470px;  /* 썸네일의 고정 너비 */
+            height: 300px; /* 썸네일의 고정 높이 */
+            object-fit: cover; /* 비율을 유지하며 이미지가 잘리지 않도록 */
+            border-radius: 8px; /* 이미지 모서리를 둥글게 */
+        }
+    </style>
 </head>
 
 <body class="pd-reset">
@@ -18,51 +135,56 @@
 
         <header class="pd-header">
             <h1 class="pd-header-title">LingoBell</h1>
-            <p class="pd-header-subtitle">WebRTC와 STT, NLP, TTS를 통용한 인공지능 언어 교환 웹 사이트</p>
+            <p class="pd-header-subtitle">LingoBell은 글로벌 사용자를 대상으로 실시간 언어 교환을 지원하는 웹 플랫폼입니다. 이 프로젝트는 WebRTC와 STT, NLP 기술을 활용하여 사용자 간의 실시간 음성 대화를 텍스트로 변환하고, 이를 실시간으로 번역하여 상대방에게 전달하는 기능을 제공합니다. Google Cloud Platform(GCP)를 활용하여 GPU 서버 환경을 구축하고, WebSocket을 통해 클라이언트와 서버 간의 오디오 데이터를 실시간으로 주고받는 구조로 설계했습니다.</p>
         </header>
 
         <section>
           <h2 class="pd-section-title">Technology Stack</h2>
             <div class="pd-tech-stack">
-                <span class="pd-tech-item">React</span>
+                <span class="pd-tech-item">React.js</span>
+                <span class="pd-tech-item">Redux</span>
                 <span class="pd-tech-item">Python</span>
+                <span class="pd-tech-item">Whisper-streaming</span>
+                <span class="pd-tech-item">WebSocket</span>
                 <span class="pd-tech-item">WebRTC</span>
-                <span class="pd-tech-item">STT</span>
-                <span class="pd-tech-item">NLP</span>
-                <span class="pd-tech-item">TTS</span>
+                <span class="pd-tech-item">GCP</span>
+                <span class="pd-tech-item">WebRTC</span>
+                <span class="pd-tech-item">MySQL</span>
+                <span class="pd-tech-item">Firebase</span>
+                <span class="pd-tech-item">Git</span>
+                <span class="pd-tech-item">Notion</span>
+                <span class="pd-tech-item">Figma</span>
             </div>
         </section>
 
         <section>
             <h2 class="pd-section-title">Key Features</h2>
             <ul class="pd-key-features">
-                <li class="pd-key-feature">실시간 언어 교환</li>
-                <li class="pd-key-feature">음성 인식 및 변환</li>
-                <li class="pd-key-feature">대화 내용 분석 및 요약</li>
-                <li class="pd-key-feature">멀티플랫폼 지원</li>
-                <!-- 주요 기능 추가 -->
+                <li class="pd-key-feature">실시간 언어 교환: WebRTC를 통해 두 사용자가 실시간으로 대화할 수 있으며, 음성 대화 내용이 실시간으로 화면에 보여집니다.</li>
+                <li class="pd-key-feature">자동 번역: Google Translation API를 활용해 파트너의 모국어에 맞게 대화를 자동 번역합니다.</li>
+                <li class="pd-key-feature">웹소켓 통신: WebSocket을 통해 빠르고 안정적으로 오디오 데이터를 전송하고 서버로부터 STT 처리된 텍스트를 전달받습니다.</li>
+                <li class="pd-key-feature">GPU 서버 구축: GCP의 VM 인스턴스를 활용해 GPU 서버 환경을 구축하여 높은 성능의 STT 서비스를 제공합니다.</li>
             </ul>
         </section>
 
         <section>
           <h2 class="pd-section-title">Project Images</h2>
           <ul class="pd-image-gallery has-scrollbar">
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-4.jpg" alt="LingoBell Screenshot 2" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                  <img src="./images/blog-3.jpg" alt="LingoBell Screenshot 3" class="pd-gallery-image">
-              </li>
-              <li class="pd-gallery-item">
-                <img src="./images/blog-1.jpg" alt="LingoBell Screenshot 1" class="pd-gallery-image">
+            <li class="pd-gallery-item">
+                <img src="./images/LingoBell-1.png" alt="LingoBell Screenshot 1" class="pd-gallery-image" data-description="LingoBell의 핵심 기능인 실시간 영상 통화입니다. 중앙에는 상대방과 자신의 웹캠이 나오고, 오른쪽에서는 음성대화가 실시간으로 STT 및 번역이 되어 보여지고 있습니다. 영상통화가 부담스러운 사용자를 위해 FaceSwap 모델을 활용하여 마스크 기능을 on/off할 수 있도록 구현했습니다.">
             </li>
-          </ul>
+            <li class="pd-gallery-item">
+                <img src="./images/LingoBell-333.png" alt="LingoBell Screenshot 3" class="pd-gallery-image" data-description="대화 도중 AI의 도움을 받아 주제 추천이나 각자 상대방에 대한 프로필 정보 (국가, 관심사) 등을 토대로 생성된 AI 퀴즈를 풀 수도 있습니다.">
+            </li>
+            <li class="pd-gallery-item">
+                <img src="./images/LingoBell-2.png" alt="LingoBell Screenshot 2" class="pd-gallery-image" data-description="Firebase를 활용하여 현재 온라인 사용자와 오프라인 사용자를 구분해놓은 파트너 페이지입니다. 이곳에서 다양한 사용자 프로필 정보를 확인할 수 있으며, 영상통화 신청 버튼을 눌러 대화를 신청할 수 있습니다. 온라인 사용자에게만 영상 통화를 신청할 수 있도록 개발하였습니다.">
+            </li>
+            <li class="pd-gallery-item">
+                <img src="./images/LingoBell-3.png" alt="LingoBell Screenshot 4" class="pd-gallery-image" data-description="웹소켓 구현에서는 클라이언트와 서버 간의 양방향 통신을 실현하기 위해 연결 관리, 메시지 프로토콜 설계, 오류 처리의 중요성을 배웠습니다. 실시간으로 데이터를 수신하고 처리하는 데 필요한 정확한 흐름이 중요하다는 것을 깨달았습니다. 또한, 데이터를 인코딩하고 디코딩하는 과정에서 발생할 수 있는 이슈들을 경험하며, 이 과정이 정확하고 효율적인 데이터 처리에 얼마나 중요한지를 체감했습니다.">
+            </li>
+        </ul>
       </section>
       
-
         <section>
             <h2 class="pd-section-title" style="margin-top: 20px;">Project Outcome</h2>
             <div class="pd-outcome">
@@ -73,18 +195,72 @@
             </div>
         </section>
 
-        <section>
-            <h2 class="pd-section-title">User Testimonials</h2>
-            <div class="pd-testimonials">
-                <blockquote class="pd-testimonial-quote">"LingoBell은 제가 원하는 방식으로 언어를 학습할 수 있도록 해준 최고의 플랫폼입니다!"</blockquote>
-                <cite class="pd-testimonial-author">- 김영수</cite>
-            </div>
-        </section>
-
         <footer class="pd-footer">
             <a href="index.html">메인 페이지로 돌아가기</a>
         </footer>
     </div>
+    <div id="imageModal">
+        <span id="close" class="close">&times;</span>
+        <span id="prev" class="prev">&#10094;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="">
+            <p id="modal-description"></p> <!-- 설명 텍스트가 여기에 표시됨 -->
+        </div>
+        <span id="next" class="next">&#10095;</span>
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modal-image");
+        const modalDescription = document.getElementById("modal-description");
+        const galleryImages = document.querySelectorAll(".pd-gallery-image");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+        const closeBtn = document.getElementById("close");
+        
+        let currentIndex;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener("click", function () {
+                currentIndex = index;
+                modalImage.src = this.src;
+                modalDescription.textContent = this.getAttribute("data-description");
+                modal.style.display = "block";
+            });
+        });
+
+        // 이전 이미지로 이동
+        prevBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === 0) ? galleryImages.length - 1 : currentIndex - 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        // 다음 이미지로 이동
+        nextBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex === galleryImages.length - 1) ? 0 : currentIndex + 1;
+            modalImage.src = galleryImages[currentIndex].src;
+            modalDescription.textContent = galleryImages[currentIndex].getAttribute("data-description");
+        });
+
+        // 모달 닫기
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // 모달 밖 클릭시 닫기
+        // window.addEventListener("click", function (event) {
+            // if (event.target === modal || event.target.classList.contains('close') || event.target.classList.contains('modal-content')) {
+                // modal.style.display = "none";
+            // }
+        // }); 
+
+        window.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 
 </html>
